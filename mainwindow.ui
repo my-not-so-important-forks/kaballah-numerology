@@ -77,7 +77,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit">
+        <widget class="QLineEdit" name="reductionMotivationEdit">
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -128,7 +128,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_2">
+        <widget class="QLineEdit" name="reductionImpressionEdit">
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -181,7 +181,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_3">
+        <widget class="QLineEdit" name="reductionExpressionEdit">
          <property name="readOnly">
           <bool>true</bool>
          </property>
