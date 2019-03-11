@@ -2,46 +2,8 @@
 #include "ui_mainwindow.h"
 #include <QtCore>
 #include <QtWidgets>
+#include "numerologycore.h"
 
-QMap<QString, quint8> createNumberCodeHash()
-{
-    QMap<QString, quint8> result;
-    result.insert("a", 1);
-    result.insert("i", 1);
-    result.insert("q", 1);
-    result.insert("j", 1);
-    result.insert("y", 1);
-
-    result.insert("b", 2);
-    result.insert("k", 2);
-    result.insert("r", 2);
-
-    result.insert("c", 3);
-    result.insert("g", 3);
-    result.insert("l", 3);
-    result.insert("s", 3);
-
-    result.insert("d", 4);
-    result.insert("m", 4);
-    result.insert("t", 4);
-
-    result.insert("e", 5);
-    result.insert("h", 5);
-    result.insert("n", 5);
-
-    result.insert("u", 6);
-    result.insert("v", 6);
-    result.insert("w", 6);
-    result.insert("x", 6);
-    result.insert("ç", 6);
-
-    result.insert("o", 7);
-    result.insert("z", 7);
-
-    result.insert("f", 8);
-    result.insert("p", 8);
-    return result;
-}
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -49,8 +11,10 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    connect(ui->nameEdit, SIGNAL(editFinished()),
-            this, SLOT(calculateNumbers()));
+    connect(ui->nameEdit, &QLineEdit::textChanged,
+            this, &MainWindow::setName);
+    connect(this, &MainWindow::nameChanged,
+            this, &MainWindow::calculateNumbers);
 
     // prepara um hash, contendo os códigos numéricos
 }
@@ -60,7 +24,32 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+QString MainWindow::name() const
+{
+    return mName;
+}
+
 void MainWindow::calculateNumbers()
 {
-    QMessageBox::warning(this, "", "test");
+    QString onlyVowels     = filterVowels(ui->nameEdit->text());
+    QString onlyConsonants = filterConsonants(ui->nameEdit->text());
+
+    quint32 sumVowels = doSumOfLetters(onlyVowels);
+    quint32 sumConsonants = doSumOfLetters(onlyConsonants);
+    quint32 sumAllLetters = doSumOfLetters(ui->nameEdit->text());
+
+    ui->vowelsEdit->setText(QString("%1").arg(sumVowels));
+    ui->consonantsEdit->setText(QString("%1").arg(sumConsonants));
+    ui->allCharsEdit->setText(QString("%1").arg(sumAllLetters));
+
+    ui->filterVowelsEdit->setText(onlyVowels);
+    ui->filterConsonantsEdit->setText(onlyConsonants);
+}
+
+void MainWindow::setName(QString name)
+{
+    if (name != mName) {
+        mName = name;
+        emit nameChanged();
+    }
 }

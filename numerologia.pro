@@ -26,10 +26,12 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    numerologycore.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    numerologycore.h
 
 FORMS += \
         mainwindow.ui
