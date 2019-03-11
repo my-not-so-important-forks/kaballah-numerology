@@ -44,6 +44,15 @@ void MainWindow::calculateNumbers()
 
     ui->filterVowelsEdit->setText(onlyVowels);
     ui->filterConsonantsEdit->setText(onlyConsonants);
+
+    quint32 reductionVowels = doReduction(sumVowels);
+    quint32 reductionConsonants = doReduction(sumConsonants);
+    quint32 reductionAllChars = doReduction(sumAllLetters);
+
+    ui->reductionMotivationEdit->setText(QString("%1").arg(reductionVowels));
+    ui->reductionImpressionEdit->setText(QString("%1").arg(reductionConsonants));
+    ui->reductionExpressionEdit->setText(QString("%1").arg(reductionAllChars));
+
 }
 
 void MainWindow::setName(QString name)
