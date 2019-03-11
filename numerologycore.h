@@ -12,6 +12,6 @@ QString filterConsonants(const QString &input);
 
 quint32 doSumOfLetters(const QString &input);
 
-quint32 doReduction(quint32 num);
+quint32 doReduction(const quint32 num);
 
 #endif // NUMEROLOGYCORE_H

@@ -90,21 +90,17 @@ quint32 doSumOfLetters(const QString &input)
     return accum;
 }
 
-quint32 doReduction(quint32 num)
+quint32 doReduction(const quint32 num)
 {
-    quint32 result = 0;
-    QString textNum("%1");
-    /*
-    do {
+    quint32 accum = num;
+    //            numero de digitos        > 1
+    while (QString("%1").arg(accum).size() > 1) {
+        QString textNum = QString("%1").arg(accum); // transforma o numero em texto
+        accum = 0;
+        for (QChar digit: textNum) {
+            accum += QString(digit).toInt();
+        }
+    }
 
-    } while ();
-    //*/
-
-    // transforma o numero em texto
-    // enquanto o numero de digitos for maior que 1 {
-    //     para cada digito do texto {
-    //         acumulador += valor do digito
-    //     }
-    // }
-    return result;
+    return accum;
 }
