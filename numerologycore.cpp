@@ -38,6 +38,42 @@ QMap<QString, quint8> createNumberCodeHash()
 
     map.insert("f", 8);
     map.insert("p", 8);
+
+    map.insert("ã", 1+3);
+    map.insert("ẽ", 5+3);
+    map.insert("ĩ", 1+3);
+    map.insert("õ", 7+3);
+    map.insert("ũ", 6+3);
+    map.insert("ñ", 5+3);
+
+    map.insert("á", 1+2);
+    map.insert("é", 5+2);
+    map.insert("í", 1+2);
+    map.insert("ó", 7+2);
+    map.insert("ú", 6+2);
+
+    map.insert("â", 1+7);
+    map.insert("ê", 5+7);
+    map.insert("î", 1+7);
+    map.insert("ô", 7+7);
+    map.insert("û", 6+7);
+
+    map.insert("à", 1*2);
+    map.insert("è", 5*2);
+    map.insert("ì", 1*2);
+    map.insert("ò", 7*2);
+    map.insert("ù", 6*2);
+
+    map.insert("ä", 1*2);
+    map.insert("ë", 5*2);
+    map.insert("ï", 1*2);
+    map.insert("ö", 7*2);
+    map.insert("ü", 6*2);
+
+    // símbolo cabalístico (bolinha em cima)
+    map.insert("å", 1+7);
+    map.insert("ů", 6+7);
+
     return map;
 }
 
@@ -51,7 +87,8 @@ QString filterVowels(const QString &input)
                     "äëïöü"
                     "âêîôû"
                     "ãẽĩõũ"
-                    "àèìòù").contains(c)) {
+                    "àèìòù"
+                    "åů").contains(c)) {
             result.append(c);
         }
     }
@@ -63,7 +100,7 @@ QString filterConsonants(const QString &input)
     QString lowerInput = input.toLower();
     QString result;
     for (QChar c: lowerInput) {
-        if (QString("bcdfghjklmnpqrstvwxyzç").contains(c)) {
+        if (QString("bcdfghjklmnpqrstvwxyzçñ").contains(c)) {
             result.append(c);
         }
     }
